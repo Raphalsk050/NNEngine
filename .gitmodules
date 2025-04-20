@@ -1,0 +1,9 @@
+[submodule "no_name_engine/third_party/bullet"]
+	path = no_name_engine/third_party/bullet
+	url = https://github.com/bulletphysics/bullet3.git
+[submodule "no_name_engine/third_party/spdlog"]
+	path = no_name_engine/third_party/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "no_name_engine/third_party/filament"]
+	path = no_name_engine/third_party/filament
+	url = https://github.com/google/filament.git
