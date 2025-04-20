@@ -3,9 +3,9 @@ project(no_name_engine)
 
 set(CMAKE_CXX_FLAGS "" CACHE STRING "" FORCE)
 
-set(FILAMENT_WARNINGS       "" CACHE STRING "" FORCE)
+set(FILAMENT_WARNINGS "" CACHE STRING "" FORCE)
 set(FILAMENT_FATAL_WARNINGS "" CACHE STRING "" FORCE)
-set(SPIRV_WERROR            "" CACHE STRING "" FORCE)
+set(SPIRV_WERROR "" CACHE STRING "" FORCE)
 
 # Standard
 set(CMAKE_CXX_STANDARD 20)
@@ -46,8 +46,38 @@ add_subdirectory(${BULLET_PATH})
 add_subdirectory(${SPDLOG_PATH})
 add_subdirectory(${FILAMENT_PATH})
 
+file(GLOB_RECURSE EVENT_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/event/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/event/*.cpp
+)
+
+file(GLOB_RECURSE SCENE_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/scene/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/scene/*.cpp
+)
+
+file(GLOB_RECURSE RENDER_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/render/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/render/*.cpp
+)
+
+file(GLOB_RECURSE PHYSICS_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/physics/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/physics/*.cpp
+)
+
+file(GLOB_RECURSE ENGINE_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/engine/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/engine/*.cpp
+)
+
 # Main engine library
 add_library(no_name_engine SHARED
+        ${EVENT_SOURCES}
+        ${SCENE_SOURCES}
+        ${PHYSICS_SOURCES}
+        ${RENDER_SOURCES}
+        ${ENGINE_SOURCES}
         no_name_engine.h
 )
 
