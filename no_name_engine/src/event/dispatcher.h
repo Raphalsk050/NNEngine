@@ -11,14 +11,23 @@ class Node;
 using EventType = uint32_t;
 using EventCallback = std::function<void(Event &)>;
 
-// Usage example:
-// // Subscribe to an event with a lambda callback
-// Connection conn = dispatcher.Connect(node, EVENT_TYPE, [](Event& e) {
-//     // Your handling code here
-//     e.StopPropagation(); // optional: stop further propagation
-// });
-// // Unsubscribe from the event
-// dispatcher.Disconnect(conn);
+/*
+ * Usage example:
+ * Subscribe to an event with a lambda callback:
+ * Connection conn = dispatcher.Connect(node, 0, [](Event& e){
+ *  dumb code here
+ *  e.StopPropagation(); // this is a optional method to stop the propagation
+ *  here instead of keeping this alive in the system
+ * });
+ * dispatcher.Disconnect(conn);
+ * Refer to the event sample to see a functional example :)
+ */
+
+/*
+ * TODO(rafael): Think a better way to put these events in a queue to trigger
+ * then instead of stop the application to run an event or to notify an event.
+ * Maybe a event buffer approach is the best option
+ */
 
 class Dispatcher {
 public:

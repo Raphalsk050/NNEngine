@@ -42,9 +42,9 @@ set(BUILD_EXTRAS OFF CACHE BOOL "Disable Extras")
 set(INSTALL_LIBS ON CACHE BOOL "Install Bullet libraries")
 
 # Submodules
-add_subdirectory(${BULLET_PATH})
+# add_subdirectory(${BULLET_PATH})
 add_subdirectory(${SPDLOG_PATH})
-add_subdirectory(${FILAMENT_PATH})
+# add_subdirectory(${FILAMENT_PATH})
 
 file(GLOB_RECURSE EVENT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/src/event/*.h
@@ -71,27 +71,38 @@ file(GLOB_RECURSE ENGINE_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/src/engine/*.cpp
 )
 
+file(GLOB_RECURSE DEBUG_SOURCES
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/debug/*.h
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/debug/*.cpp
+)
+
+
 # Main engine library
 add_library(no_name_engine SHARED
         ${EVENT_SOURCES}
-        ${SCENE_SOURCES}
-        ${PHYSICS_SOURCES}
-        ${RENDER_SOURCES}
+        #        ${SCENE_SOURCES}
+        #        ${PHYSICS_SOURCES}
+        #        ${RENDER_SOURCES}
         ${ENGINE_SOURCES}
+        ${DEBUG_SOURCES}
         no_name_engine.h
 )
 
 # Includes
-target_include_directories(no_name_engine PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/${BULLET_PATH}/src)
-
+target_include_directories(no_name_engine PUBLIC
+        # ${CMAKE_CURRENT_SOURCE_DIR}/${BULLET_PATH}/src
+        # ${CMAKE_CURRENT_SOURCE_DIR}/${FILAMENT_PATH}/filament
+        ${CMAKE_CURRENT_SOURCE_DIR}/${SPDLOG_PATH}/spdlog
+        # ${CMAKE_CURRENT_SOURCE_DIR}/src
+)
 # Linking
 target_link_libraries(no_name_engine PUBLIC
-        BulletDynamics
-        BulletCollision
-        LinearMath
+        # BulletDynamics
+        # BulletCollision
+        # LinearMath
         spdlog::spdlog
         glfw
         GLEW::GLEW
-        filament
+        # filament
         "-framework OpenGL"
 )

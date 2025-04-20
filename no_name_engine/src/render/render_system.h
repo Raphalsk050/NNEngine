@@ -12,6 +12,13 @@
 
 namespace nn {
 
+/*
+ * TODO(rafael): Think a way to wrapper the filament framework here to maintain
+ * a good render efficiency for different configurations. This class will grow
+ * so fast because is the main system of the engine, we have to take care about
+ * the optimization in the future too, not now.
+ */
+
 // System responsible for submitting renderables to Filament
 class RenderSystem : public System {
 public:

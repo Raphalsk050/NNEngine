@@ -9,6 +9,15 @@
 
 namespace nn {
 
+/*
+ * This class is the base class for the engine scenes. In the future, we'll have
+ * a scene manager that should control how the scenes are shown and things like
+ * sub-scenes, activation, deactivation
+ *
+ * TODO(rafael): Add some logic to control the node tree. This is mandatory.
+ * Don't forget this, Rafael!
+ */
+
 class RenderSystem;
 class PhysicsSystem;
 
